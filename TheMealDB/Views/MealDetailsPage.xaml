@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TheMealDB.Views.MealDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontawesome="clr-namespace:TheMealDB.Helper"
+    BackgroundColor="#2D2013"
+    NavigationPage.HasNavigationBar="False">
+    <Grid
+        ColumnDefinitions="20,50,*,50,20"
+        ColumnSpacing="0"
+        RowDefinitions="20,50,*"
+        RowSpacing="0">
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,0,0,12"
+            FontFamily="MaterialFontFamily"
+            FontSize="30"
+            HorizontalTextAlignment="Start"
+            Text="{x:Static fontawesome:MealAppFlatIcons.ArrowLeft}"
+            TextColor="White"
+            VerticalTextAlignment="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CloseCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="2"
+            FontSize="25"
+            HorizontalTextAlignment="Center"
+            LineBreakMode="TailTruncation"
+            MaxLines="1"
+            Text="{Binding SelectedMeal.strMeal}"
+            TextColor="White"
+            VerticalTextAlignment="Start" />
+
+        <ScrollView
+            Grid.Row="5"
+            Grid.ColumnSpan="5"
+            VerticalScrollBarVisibility="Never">
+            <StackLayout Spacing="10">
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="300"
+                    Source="{Binding MealDetail.strMealThumb}" />
+
+                <Label
+                    Margin="20,0,20,0"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontAttributes="Bold"
+                                FontSize="22"
+                                Text="Name : "
+                                TextColor="#d57d1f" />
+                            <Span
+                                FontSize="20"
+                                Text="{Binding MealDetail.strMeal}"
+                                TextColor="#d57d1f" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label
+                    Margin="20,0,20,10"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontAttributes="Bold"
+                                FontSize="22"
+                                Text="Instructions : "
+                                TextColor="#d57d1f" />
+
+                            <Span
+                                FontSize="20"
+                                LineHeight="1.0"
+                                Text="{Binding MealDetail.strInstructions}"
+                                TextColor="#d57d1f" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

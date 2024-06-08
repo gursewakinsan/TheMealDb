@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TheMealDB.Views.CategoryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#2D2013"
+    NavigationPage.HasNavigationBar="False">
+    <Grid
+        Margin="20"
+        RowDefinitions="50,*"
+        RowSpacing="10">
+        <Label
+            Grid.Row="0"
+            FontSize="25"
+            HorizontalTextAlignment="Center"
+            Text="Welcome to TheMealDB"
+            TextColor="White"
+            VerticalTextAlignment="Start" />
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Category.categories}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="25"
+                    Orientation="Vertical"
+                    Span="2"
+                    VerticalItemSpacing="25" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Spacing="10">
+                        <ImageButton
+                            Aspect="AspectFill"
+                            BackgroundColor="White"
+                            Clicked="OnItemClicked"
+                            CornerRadius="10"
+                            Source="{Binding strCategoryThumb}" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding strCategory}"
+                            TextColor="#d57d1f"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TheMealDB.Views.MealsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontawesome="clr-namespace:TheMealDB.Helper"
+    BackgroundColor="#2D2013"
+    NavigationPage.HasNavigationBar="False">
+    <Grid
+        Margin="20"
+        ColumnDefinitions="50,*,50"
+        ColumnSpacing="0"
+        RowDefinitions="50,*"
+        RowSpacing="10">
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0,0,0,12"
+            FontFamily="MaterialFontFamily"
+            FontSize="30"
+            HorizontalTextAlignment="Start"
+            Text="{x:Static fontawesome:MealAppFlatIcons.ArrowLeft}"
+            TextColor="White"
+            VerticalTextAlignment="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CloseCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            FontSize="25"
+            HorizontalTextAlignment="Center"
+            Text="{Binding SelectedCategory.strCategory}"
+            TextColor="White"
+            VerticalTextAlignment="Start" />
+
+        <CollectionView
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            ItemsSource="{Binding Meal.meals}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="25"
+                    Orientation="Vertical"
+                    Span="1"
+                    VerticalItemSpacing="25" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Spacing="10">
+                        <ImageButton
+                            Aspect="AspectFill"
+                            BackgroundColor="White"
+                            Clicked="OnMealClicked"
+                            CornerRadius="10"
+                            HeightRequest="150"
+                            Source="{Binding strMealThumb}" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding strMeal}"
+                            TextColor="#d57d1f"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
